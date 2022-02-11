@@ -19,7 +19,7 @@ parseArguments [flag] =             return (flag, "")
 parseArguments [flag, filename] =   return (flag, filename)
 parseArguments others =             end "Error in arguments. Expecting arguments in format -i|-1|-2 [FILE]"
 
-processArguments :: [String] -> IO([Char] -> IO(), String)
+processArguments :: [String] -> IO(PlgGrammar -> IO(), String)
 processArguments args = do
     (flag, filename) <- parseArguments args
     input <- getInput filename
@@ -33,20 +33,20 @@ processArguments args = do
           _    -> end ("Not a valid flag. Please use -i|-1|-2")
     else end "Input file must have 4 lines or more (Nonterminals, Terminals, Start Nonterminal and Rules)"
     
-returnPlg :: [Char] -> IO()
+returnPlg :: PlgGrammar -> IO()
 returnPlg plg = do
   putStrLn "Printing base PLG"
   print plg
 
-returnUpdatedPlg :: [Char] -> IO()
+returnUpdatedPlg :: PlgGrammar -> IO()
 returnUpdatedPlg plg = do
   putStrLn "Printing updated PLG"
   print plg
 
-returnNka :: [Char] -> IO()
+returnNka :: PlgGrammar -> IO()
 returnNka plg = do
   putStrLn "Printing NKA"
   print plg
 
-check :: String -> Either String [Char]
-check x = if 1 == 2 then Left "Test" else Right x
+check :: String -> Either String PlgGrammar
+check x = if 1 == 2 then Left "Test" else Right (PlgGrammar (["X"])(["a"])("X")(["X->a"]))

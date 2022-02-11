@@ -9,6 +9,9 @@ type Rules = [String]
 
 data PlgGrammar = PlgGrammar Nonterminals Terminals StartNonterminal Rules deriving (Eq)
 
+instance Show PlgGrammar where
+    show grammar@(PlgGrammar nonterminals terminals startNonterminal rules) = "GRAMATIKA"
+
 getNonterminals :: PlgGrammar -> Nonterminals
 getNonterminals (PlgGrammar nonterminals _ _ _) = nonterminals
 

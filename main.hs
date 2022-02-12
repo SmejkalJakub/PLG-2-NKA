@@ -1,14 +1,16 @@
 import Helper
 import Data.Char
 import System.IO (isEOF)
+import PlgProc
 import PlgTypes
+import PlgParser
 import System.Environment ( getArgs )
 
 main :: IO ()
 main = do
     (flag, input) <- processArguments =<< getArgs
     
-    either end flag (check input)
+    either end flag (createAndCheckGrammar input)
 
 getInput :: String -> IO String
 getInput "" = getContents
@@ -41,12 +43,9 @@ returnPlg plg = do
 returnUpdatedPlg :: PlgGrammar -> IO()
 returnUpdatedPlg plg = do
   putStrLn "Printing updated PLG"
-  print plg
+  print $ getUpdatedPlg plg
 
 returnNka :: PlgGrammar -> IO()
 returnNka plg = do
   putStrLn "Printing NKA"
   print plg
-
-check :: String -> Either String PlgGrammar
-check x = if 1 == 2 then Left "Test" else Right (PlgGrammar (["X"])(["a"])("X")(["X->a"]))

@@ -16,4 +16,4 @@ checkRule rule = if (all isLower rule) then "TEST" else rule ++ rule
 --expandRulesWithNonterminal rule = 
     
 getUpdatedPlg :: PlgGrammar -> PlgGrammar
-getUpdatedPlg grammar = PlgGrammar (getNonterminals grammar) (getTerminals grammar) (getStartNonterminal grammar) (updateRules grammar)
+getUpdatedPlg grammar = PlgGrammar (getNonterminals grammar) (getTerminals grammar) (getStartNonterminal grammar) (getRules grammar)

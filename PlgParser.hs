@@ -48,7 +48,7 @@ validateRules rules grammar = do
 validateRule :: [Char] -> PlgGrammar -> Bool
 validateRule rule grammar = do
     if length rule >= 4 && rule !! 1 == '-' && rule !! 2 == '>' && 
-        validateRuleLeftSide (getRuleLeftSide rule) grammar && 
+        validateRuleLeftSide (trim(getRuleLeftSide rule)) grammar && 
         validateRuleRightSide (trim(getRuleRightSide rule)) grammar 
         then True
         else False
@@ -56,11 +56,14 @@ validateRule rule grammar = do
 validateRuleLeftSide :: [Char] -> PlgGrammar -> Bool
 validateRuleLeftSide leftSide grammar = do
     let nonterminals = getNonterminals grammar
-    if leftSide `elem` nonterminals then True else False 
+    if leftSide `elem` nonterminals && length leftSide == 1 then True else False 
 
 validateRuleRightSide :: [Char] -> PlgGrammar -> Bool
 validateRuleRightSide rightSide grammar = do
-    if "#" `isInfixOf` rightSide && length rightSide > 1 then False
+    if (length rightSide == 1 && (rightSide !! 0) /= '#' && not (all isLower rightSide)) ||
+       ("#" `isInfixOf` rightSide && length rightSide > 1) ||
+       (length rightSide > 1 && ((not (all isLower rightSide) || not (isUpper (last rightSide))) && not (all isLower (init rightSide))))
+          then False
     else
         all (`validateRuleRightSideSymbol` grammar) rightSide
 

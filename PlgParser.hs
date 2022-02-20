@@ -60,7 +60,8 @@ validateRuleLeftSide leftSide grammar = do
 
 validateRuleRightSide :: [Char] -> PlgGrammar -> Bool
 validateRuleRightSide rightSide grammar = do
-    if (length rightSide == 1 && (rightSide !! 0) /= '#' && not (all isLower rightSide)) ||
+    if length rightSide == 0 ||
+       (length rightSide == 1 && (rightSide !! 0) /= '#' && not (all isLower rightSide)) ||
        ("#" `isInfixOf` rightSide && length rightSide > 1) ||
        (length rightSide > 1 && ((not (all isLower rightSide) || not (isUpper (last rightSide))) && not (all isLower (init rightSide))))
           then False

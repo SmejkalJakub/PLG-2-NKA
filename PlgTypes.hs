@@ -8,7 +8,6 @@ type StartNonterminal = String
 type Rules = [String]
 type Rule = String
 
-
 data PlgGrammar = PlgGrammar Nonterminals Terminals StartNonterminal Rules deriving (Eq)
 
 instance Show PlgGrammar where
@@ -31,3 +30,6 @@ getRuleLeftSide rule = takeWhile (/= '-') rule
 
 getRuleRightSide :: [Char] -> [Char]
 getRuleRightSide rule = tail $ dropWhile (/= '>') rule
+
+getRulesForNonTerminal :: PlgGrammar -> [Char] -> Rules
+getRulesForNonTerminal grammar nonterminal = [x | x <- (getRules grammar), (getRuleLeftSide x == nonterminal)]

@@ -1,9 +1,10 @@
-import Helper
+import Helpers
 import Data.Char
 import System.IO (isEOF)
 import PlgProc
-import PlgTypes
+import Types
 import PlgParser
+import NKAProc
 import System.Environment ( getArgs )
 
 main :: IO ()
@@ -48,4 +49,4 @@ returnUpdatedPlg plg = do
 returnNka :: PlgGrammar -> IO()
 returnNka plg = do
   putStrLn "Printing NKA"
-  print plg
+  print $ getFinalNka (getUpdatedPlg plg)

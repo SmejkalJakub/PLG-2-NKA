@@ -1,12 +1,12 @@
 
 flp21-fun: *.hs
-	ghc Main.hs -o flp21-fun
+	ghc plg-2-nka.hs -o flp21-fun
 
 file: flp21-fun
-	./flp21-fun -1 test.txt
+	./flp21-fun -2 test.txt
 
 stdin: flp21-fun
-	./flp21-fun -1
+	./flp21-fun -2
 
 clear:
 	rm -rf flp21-fun

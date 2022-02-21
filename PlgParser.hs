@@ -1,8 +1,8 @@
 
 module PlgParser where
 
-import PlgTypes
-import Helper
+import Types
+import Helpers
 
 import Data.Char
 import Data.List

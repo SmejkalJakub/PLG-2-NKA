@@ -7,6 +7,8 @@ import Data.Char
 import Data.List
 
 --------------------- Flag -1 ---------------------------
+
+-- Function that returns all the updated rules so they are in correct format for desired grammar
 updateRules :: PlgGrammar -> [[[Char]]]
 updateRules grammar = do
     if all isAllRulesInCorrectFormatForUpdatedGrammar rules 
@@ -17,12 +19,15 @@ updateRules grammar = do
     where 
         rules = getRules grammar
 
+-- Function that takes all rules for nonterminal and groups them into one string
 groupRulesForNonterminal :: [Char] -> PlgGrammar -> [Char]
 groupRulesForNonterminal nonterminal grammar = nonterminal ++ "->" ++ intercalate " " (map getRuleRightSide (map trim (getRulesForNonTerminal grammar nonterminal)))
 
+-- Function returns all the updated rules for all the nonterminals
 getUpdatedRules :: [Char] -> [[Char]]
 getUpdatedRules rule = expandRules (getRuleLeftSide rule) (getRuleRightSide rule) 0 0
 
+-- Function that parses all rules for nonterminal into the correct format
 expandRules :: [Char] -> [Char] -> Integer -> Integer -> [[Char]]
 expandRules _ [] _ _ = []
 
@@ -64,6 +69,7 @@ expandRules nonterminal rules index maxindex = do
             restOfTheRules = do if length (dropWhile (/= ' ') rules) == 0 then [] else tail $ dropWhile (/= ' ') rules
             ruleLen = length currentRule
 
+-- Function that checks if all the rules are in a correct format -> nothing has to be done
 isAllRulesInCorrectFormatForUpdatedGrammar :: [Char] -> Bool
 isAllRulesInCorrectFormatForUpdatedGrammar rule = do 
     if length rightSide == 2 && isLower (rightSide !! 0) && isUpper (rightSide !! 1) ||
@@ -73,9 +79,11 @@ isAllRulesInCorrectFormatForUpdatedGrammar rule = do
     where
         rightSide = trim(getRuleRightSide rule)
 
+-- Function that changes input into the updated grammar that is ready to be parsed into NKA
 getUpdatedPlg :: PlgGrammar -> PlgGrammar
 getUpdatedPlg grammar = PlgGrammar (updatedNonterminals) (getTerminals grammar) (getStartNonterminal grammar) (rules)
     where 
         rules = parseToRulesArray $ updateRules grammar
         updatedNonterminals = nub $ map getRuleLeftSide rules
+
 --------------------- END Flag -1 ---------------------------

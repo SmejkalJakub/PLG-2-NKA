@@ -25,7 +25,7 @@ getStartN input = lines input !! 2
 
 -- Function that returns the rest of the input where the rules should be and removes the duplicates
 getListRules :: String -> [String]
-getListRules input = nub $ drop 3 $ lines input
+getListRules input = nub $ drop 3 $ map trim (lines input)
 
 -- Function that tries to validate all the nonterminals
 validateNonTerminals :: [Char] -> Bool

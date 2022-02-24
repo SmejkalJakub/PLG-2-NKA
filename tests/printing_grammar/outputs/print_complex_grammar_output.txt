@@ -1,0 +1,8 @@
+Printing base PLG
+A,B,C,D,E,F,G,H,I
+a,b,c,d,e,f,g,h,i,j,k,l
+A
+A->aaB
+A->ccB
+B->bB
+B->#

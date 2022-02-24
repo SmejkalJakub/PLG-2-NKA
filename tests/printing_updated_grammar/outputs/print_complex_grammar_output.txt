@@ -1,0 +1,10 @@
+Printing updated PLG
+A,A1,A2,B
+a,b,c,d,e,f,g,h,i,j,k,l
+A
+A->aA1
+A1->aB
+A->cA2
+A2->cB
+B->bB
+B->#

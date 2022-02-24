@@ -13,6 +13,9 @@ script_files=($script_files)
 output_files=$(find $directory -type f -name "*_output.txt")
 output_files=($output_files)
 
+succ_tests_nka=0
+fail_tests_nka=0
+
 declare -A tests_dict_nka
 
 for script in "${script_files[@]}"
@@ -42,9 +45,14 @@ for key in "${!tests_dict_nka[@]}"; do
 
     if [ "$DIFF" ] && [ $? == 0 ] 
     then
+        ((fail_tests_nka=fail_tests_nka+1))
         echo "Test failed"
     else
+        ((succ_tests_nka=succ_tests_nka+1))
         echo "Test successful"
     fi
 done
-echo "--------------------------------------------------------------"
+echo "=============================================================="
+echo "Successful tests: ${succ_tests_nka}"
+echo "Failed tests: ${fail_tests_nka}"
+echo "=============================================================="

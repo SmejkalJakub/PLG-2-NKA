@@ -1,0 +1,7 @@
+Printing updated PLG
+A,A1,B
+a
+A
+A->aA1
+A1->aB
+B->#

@@ -15,6 +15,9 @@ output_files=($output_files)
 
 declare -A tests_dict_updated
 
+succ_tests_updated=0
+fail_tests_updated=0
+
 for script in "${script_files[@]}"
 do
     script_name=$(basename $script)
@@ -42,9 +45,14 @@ for key in "${!tests_dict_updated[@]}"; do
 
     if [ "$DIFF" ] && [ $? == 0 ] 
     then
+        ((fail_tests_updated=fail_tests_updated+1))
         echo "Test failed"
     else
+        ((succ_tests_updated=succ_tests_updated+1))
         echo "Test successful"
     fi
 done
-echo "--------------------------------------------------------------"
+echo "=============================================================="
+echo "Successful tests: ${succ_tests_updated}"
+echo "Failed tests: ${fail_tests_updated}"
+echo "=============================================================="

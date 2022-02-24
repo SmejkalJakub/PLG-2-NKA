@@ -47,6 +47,6 @@ getFinalNka grammar = NKA (map snd statesTuple) (getTerminals grammar) (startSta
         statesTuple = getNonTerminalsTuple (getNonterminals grammar) 1 
         startState = getNumberForNonterminal (trim(getStartNonterminal grammar)) statesTuple
         endStates = map (`getNumberForNonterminal` statesTuple) (map getRuleLeftSide [x | x <- (getRules grammar), '#' `elem` x])
-        rules = parseToRulesArray $ transferRules grammar statesTuple
+        rules = init $ parseToRulesArray $ transferRules grammar statesTuple
 
 --------------------- END Flag -2 ---------------------------

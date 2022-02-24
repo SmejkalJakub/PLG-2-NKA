@@ -1,6 +1,9 @@
 #!/bin/bash
 
-make
+echo "--------------------------------------------------------------"
+echo "DOING TESTS FOR THE -i PARAMETER"
+
+make -s
 
 directory="./tests/printing_grammar/"
 
@@ -34,7 +37,7 @@ for key in "${!tests_dict[@]}"; do
     test_name=$(basename $key)
     test_name_without_extension=${test_name%.*} 
     echo "Doing test: $test_name_without_extension..."
-    #diff -u --strip-trailing-cr -w -b ${tests_dict[$key]} <(./flp21-fun -i $key)
+    diff -u --strip-trailing-cr -w -b ${tests_dict[$key]} <(./flp21-fun -i $key)
     DIFF=$(diff -u --strip-trailing-cr -w -b ${tests_dict[$key]} <(./flp21-fun -i $key))
 
     if [ "$DIFF" ] && [ $? == 0 ] 

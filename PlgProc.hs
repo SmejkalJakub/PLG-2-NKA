@@ -1,8 +1,12 @@
+-- Project: plg-2-nka
+-- Author: Jakub Smejkal (xsmejk28)
+-- Year: 2022
+
+-- Module containing functions for updated grammar from the input grammar
 module PlgProc where
 
 import Types
 import Helpers
-
 import Data.Char
 import Data.List
 
@@ -81,7 +85,7 @@ isAllRulesInCorrectFormatForUpdatedGrammar rule = do
 
 -- Function that changes input into the updated grammar that is ready to be parsed into NKA
 getUpdatedPlg :: PlgGrammar -> PlgGrammar
-getUpdatedPlg grammar = PlgGrammar (updatedNonterminals) (getTerminals grammar) (getStartNonterminal grammar) (rules)
+getUpdatedPlg grammar = PlgGrammar (nub $ (updatedNonterminals ++ getNonterminals grammar)) (getTerminals grammar) (getStartNonterminal grammar) (rules)
     where 
         rules = parseToRulesArray $ updateRules grammar
         updatedNonterminals = nub $ map getRuleLeftSide rules

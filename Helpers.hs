@@ -1,3 +1,8 @@
+-- Project: plg-2-nka
+-- Author: Jakub Smejkal (xsmejk28)
+-- Year: 2022
+
+-- Module containing some simple helper functions
 module Helpers where
 
 import Debug.Trace

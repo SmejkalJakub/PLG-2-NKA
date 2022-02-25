@@ -1,9 +1,12 @@
+-- Project: plg-2-nka
+-- Author: Jakub Smejkal (xsmejk28)
+-- Year: 2022
 
+-- Module containing functions for creating and validating grammar from input
 module PlgParser where
 
 import Types
 import Helpers
-
 import Data.Char
 import Data.List
 

@@ -1,3 +1,9 @@
+-- Project: plg-2-nka
+-- Author: Jakub Smejkal (xsmejk28)
+-- Year: 2022
+
+
+-- Module containing PLG and NKA types and some functions to work with them
 module Types where
 
 import Data.List (intercalate)
@@ -7,7 +13,6 @@ type Rules = [String]
 type Nonterminals = [String]
 type Terminals = [String]
 type StartNonterminal = String
-type Rule = String
 
 -- PLG grammar type
 data PlgGrammar = PlgGrammar Nonterminals Terminals StartNonterminal Rules

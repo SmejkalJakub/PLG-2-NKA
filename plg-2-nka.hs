@@ -1,10 +1,16 @@
-import Helpers
-import Data.Char
-import System.IO (isEOF)
-import PlgProc
+-- Project: plg-2-nka
+-- Author: Jakub Smejkal (xsmejk28)
+-- Year: 2022
+
+-- Main module containing parameter parsing, file reading, etc.
+
 import Types
-import PlgParser
+import Helpers
 import NKAProc
+import PlgProc
+import Data.Char
+import PlgParser
+import System.IO (isEOF)
 import System.Environment ( getArgs )
 
 -- Main function, checks the input and print the desired output or error

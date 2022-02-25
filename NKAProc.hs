@@ -1,9 +1,13 @@
+-- Project: plg-2-nka
+-- Author: Jakub Smejkal (xsmejk28)
+-- Year: 2022
+
+-- Module containing implementation of PLG-2-NKA parsing
 module NKAProc where
 
 import Types
 import Helpers
 import PlgProc
-
 import Data.List (intercalate)
 
 --------------------- Flag -2 ---------------------------

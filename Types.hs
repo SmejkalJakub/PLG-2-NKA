@@ -2,7 +2,6 @@
 -- Author: Jakub Smejkal (xsmejk28)
 -- Year: 2022
 
-
 -- Module containing PLG and NKA types and some functions to work with them
 module Types where
 

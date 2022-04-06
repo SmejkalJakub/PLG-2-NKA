@@ -102,7 +102,6 @@ validateInput input grammar = if all (== True) [validateNonTerminals (lines inpu
 
 -- Function that creates and checks the grammar from the input string. If grammar is not valid, error message will be returned
 createAndCheckGrammar :: String -> Either String PlgGrammar
-createAndCheckGrammar input = if check then Right grammar else Left "Grammar not valid"
+createAndCheckGrammar input = if validateInput input grammar then Right grammar else Left "Grammar not valid"
     where
         grammar = createGrammar input
-        check@(checkBool) = validateInput input grammar

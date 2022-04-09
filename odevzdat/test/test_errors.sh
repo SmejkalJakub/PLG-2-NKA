@@ -19,7 +19,7 @@ do
     script_name=$(basename $script)
     name_without_extension=${script_name%.*}
     echo "Doing test: $name_without_extension..."
-    ../../flp21-fun -i $script 2> /dev/null > /dev/null
+    ../flp21-fun -i $script 2> /dev/null > /dev/null
     
     if [ $? != 1 ] 
     then

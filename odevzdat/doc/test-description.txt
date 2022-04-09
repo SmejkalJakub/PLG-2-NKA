@@ -1,0 +1,20 @@
+Složka test/ obsahuje několik 
+podsložek s testovacímy vstupy a odpovídajícímy výstupy.
+
+Pro automatické spuštění testů je možné v hlavní složce spustit 
+`make tests` či ve složce test spustit skript `test.sh`
+
+Skript `test.sh` spouští postupně testy pro parametr `-i`, `-1`, `-2`.
+
+Testy vypisují pouze zda uspěli či neuspěli. 
+Testovací vstupy a výstupy jsou pojmenovány stejně s tím rozdílem, 
+že výstupy jsou ve složce outputs v podsložce se sadou subtestů.
+
+Pro testy ve složce errors není poskytnut vzorový output 
+jelikož je pokaždé stejný a .sh skript kontroluje návratový kód programu.
+
+Subtesty pro každý paramet obsahují podobné či stejné vstupy. 
+Rozdíl je samozřejmě ve výstupech. 
+Každý subtest obsahuje test na vstup ze zadání, pak jednoduchou gramatiku a na konec komplexní gramatiku s duplicitami apod.
+Subtesty testující chyby ve vstupu testují většinu možných chyb ve vstupní gramatice.
+

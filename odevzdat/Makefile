@@ -8,4 +8,4 @@ clear:
 	rm -rf src/*.hi
 
 tests: flp21-fun
-	cd test/automatic && ./test.sh
+	cd test/ && ./test.sh

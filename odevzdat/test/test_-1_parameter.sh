@@ -41,7 +41,7 @@ for key in "${!tests_dict_updated[@]}"; do
     test_name_without_extension=${test_name%.*} 
     echo "Doing test: $test_name_without_extension..."
     #diff -u --strip-trailing-cr -w -b ${tests_dict[$key]} <(./flp21-fun -1 $key)
-    DIFF=$(diff -u --strip-trailing-cr -w -b ${tests_dict_updated[$key]} <(../../flp21-fun -1 $key))
+    DIFF=$(diff -u --strip-trailing-cr -w -b ${tests_dict_updated[$key]} <(../flp21-fun -1 $key))
 
     if [ "$DIFF" ] && [ $? == 0 ] 
     then

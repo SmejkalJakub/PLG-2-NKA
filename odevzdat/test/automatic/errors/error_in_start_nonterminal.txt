@@ -1,6 +1,6 @@
 A,B
 a,b,c
-A
+X
 A->aaB
 A->ccB
 B->bB

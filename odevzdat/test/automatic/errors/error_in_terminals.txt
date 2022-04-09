@@ -1,5 +1,5 @@
 A,B
-a,b,c
+a,b,c,X
 A
 A->aaB
 A->ccB

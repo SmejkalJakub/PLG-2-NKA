@@ -4,4 +4,4 @@ A
 A->aaB
 A->ccB
 B->bB
-B->#
+B->#a

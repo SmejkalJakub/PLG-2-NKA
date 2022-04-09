@@ -1,0 +1,11 @@
+A,B,C,D,E,F,G,H,I,B,B,B,B
+a,b,c,d,e,f,g,h,i,j,k,l,l,l,l,l,l,l,l,l,l,l
+A
+A->aaB
+A->ccB
+B->bB
+B->#
+A->aaB
+A->ccB
+B->#
+B->bB

@@ -8,4 +8,5 @@ clear:
 	rm -rf src/*.hi
 
 tests: flp21-fun
+	chmod +x test/test.sh
 	cd test/ && ./test.sh

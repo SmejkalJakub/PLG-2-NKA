@@ -3,7 +3,7 @@
 echo "--------------------------------------------------------------"
 echo "DOING TESTS FOR THE ERRORS"
 
-make -s -C ../../
+make -s -C ../
 
 directory="./errors/"
 

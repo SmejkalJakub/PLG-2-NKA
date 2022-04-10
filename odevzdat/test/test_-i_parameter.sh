@@ -3,7 +3,7 @@
 echo "--------------------------------------------------------------"
 echo "DOING TESTS FOR THE -i PARAMETER"
 
-make -s -C ../../
+make -s -C ../
 
 directory="./printing_grammar/"
 

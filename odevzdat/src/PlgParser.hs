@@ -6,7 +6,7 @@
 module PlgParser where
 
 import Types
-import Helpers (parseToString, trim)
+import Helpers (charToString, trim)
 import Data.Char
 import Data.List
 
@@ -16,11 +16,11 @@ createGrammar input = PlgGrammar (getListNonterminals input) (getListTerminals i
 
 -- Function that returns all the nonterminals that should be on the first line of the input. Also removes duplicates
 getListNonterminals :: String -> [String]
-getListNonterminals input = nub $ map parseToString $ [x | x <- lines input !! 0, isUpper x]
+getListNonterminals input = nub $ map charToString $ [x | x <- lines input !! 0, isUpper x]
 
 -- Function that returns all the terminals that should be on the second line of the input. Also removes duplicates
 getListTerminals :: String -> [String]
-getListTerminals input = nub $ map parseToString $ [x | x <- lines input !! 1, isLower x]
+getListTerminals input = nub $ map charToString $ [x | x <- lines input !! 1, isLower x]
 
 -- Function that returns the start nonterminal that should be on the third line of the input
 getStartN :: String -> String
@@ -36,8 +36,7 @@ validateNonTerminals nonTerminals = all (== True) [all validateNonTerminal (trim
 
 -- Function that validates each nonterminal
 validateNonTerminal :: Char -> Bool
-validateNonTerminal nonTerminal = do 
-    if isUpper nonTerminal || nonTerminal == ',' then True else False 
+validateNonTerminal nonTerminal = if isUpper nonTerminal || nonTerminal == ',' then True else False 
 
 -- Function that tries to validate all the terminal
 validateTerminals :: [Char] -> Bool
@@ -45,23 +44,22 @@ validateTerminals terminals = all (== True) [all validateTerminal (trim(terminal
 
 -- Function that validates each terminal
 validateTerminal :: Char -> Bool
-validateTerminal terminal = do 
-    if isLower terminal || terminal == ',' then True else False
+validateTerminal terminal = if isLower terminal || terminal == ',' then True else False
 
 -- Function that validates start nonterminal
 validateStartNonTerminal :: [Char] -> PlgGrammar -> Bool
-validateStartNonTerminal startNonTerminal grammar = do
-    let nonterminals = concat (getNonterminals grammar)
+validateStartNonTerminal startNonTerminal grammar = 
     if startNonTerminal !! 0 `elem` nonterminals && length startNonTerminal == 2 then True else False
+    where
+        nonterminals = concat (getNonterminals grammar)
 
 -- Function that tries to validate all the rules
 validateRules :: [String] -> PlgGrammar -> Bool
-validateRules rules grammar = do
-    all (== True) [all (`validateRule` grammar) rules]
+validateRules rules grammar = all (== True) [all (`validateRule` grammar) rules]
 
 -- Function that validates each rule
 validateRule :: [Char] -> PlgGrammar -> Bool
-validateRule rule grammar = do
+validateRule rule grammar = 
     if length rule >= 4 && rule !! 1 == '-' && rule !! 2 == '>' && 
         validateRuleLeftSide (trim(getRuleLeftSide rule)) grammar && 
         validateRuleRightSide (trim(getRuleRightSide rule)) grammar 
@@ -70,13 +68,14 @@ validateRule rule grammar = do
 
 -- Function that validates left side of each rule
 validateRuleLeftSide :: [Char] -> PlgGrammar -> Bool
-validateRuleLeftSide leftSide grammar = do
-    let nonterminals = getNonterminals grammar
+validateRuleLeftSide leftSide grammar = 
     if leftSide `elem` nonterminals && length leftSide == 1 then True else False 
+    where
+        nonterminals = getNonterminals grammar
 
 -- Function that validates right side of each rule
 validateRuleRightSide :: [Char] -> PlgGrammar -> Bool
-validateRuleRightSide rightSide grammar = do
+validateRuleRightSide rightSide grammar = 
     if length rightSide == 0 ||
        (length rightSide == 1 && (rightSide !! 0) /= '#' && not (all isLower rightSide)) ||
        ("#" `isInfixOf` rightSide && length rightSide > 1) ||
@@ -87,10 +86,11 @@ validateRuleRightSide rightSide grammar = do
 
 -- Function that validates each symbol on the right side of each rule
 validateRuleRightSideSymbol :: Char -> PlgGrammar -> Bool
-validateRuleRightSideSymbol symbol grammar = do
-    let nonterminals = getNonterminals grammar
-    let terminals = getTerminals grammar
+validateRuleRightSideSymbol symbol grammar =
     if [symbol] `elem` terminals || [symbol] `elem` nonterminals || symbol == '#' then True else False
+    where
+        nonterminals = getNonterminals grammar
+        terminals = getTerminals grammar
 
 -- Function that validates all the elements of the inputed grammar
 validateInput :: String -> PlgGrammar -> Bool
@@ -102,6 +102,7 @@ validateInput input grammar = if all (== True) [validateNonTerminals (lines inpu
 
 -- Function that creates and checks the grammar from the input string. If grammar is not valid, error message will be returned
 createAndCheckGrammar :: String -> Either String PlgGrammar
-createAndCheckGrammar input = if validateInput input grammar then Right grammar else Left "Grammar not valid"
+createAndCheckGrammar input = 
+    if validateInput input grammar then Right grammar else Left "Grammar not valid"
     where
         grammar = createGrammar input

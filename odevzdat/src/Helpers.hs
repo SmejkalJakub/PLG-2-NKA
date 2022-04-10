@@ -12,13 +12,12 @@ endWithError :: String -> IO a
 endWithError errorText = ioError(userError errorText)
 
 -- Simple parser that changes Char to String
-parseToString :: Char -> String
-parseToString char = [char]
+charToString :: Char -> String
+charToString char = [char]
 
 -- Function that trims leading and trailing whitespace
 trim :: [Char] -> [Char]
-trim = f . f
-   where f = reverse . dropWhile isSpace
+trim = (reverse . dropWhile isSpace) . (reverse . dropWhile isSpace)
 
 -- Change array of arrays to simple array
 parseToRulesArray :: [[a]] -> [a]

@@ -5,6 +5,6 @@ Program byl implementován dle zadání. Povedlo se implementovat všechny zadan
 
 Testy jsou implementovány jako samosustitelné z hlavní složky pomocí `make tests`.
 
-Pro popis jednotlivých testů viz. `test-description.txt`
+Pro podrobnější popis testů viz. `test-description.txt`
 
 Všechny komponenty byly testovány na serveru merlin, včetně všech jednotlivých testů.

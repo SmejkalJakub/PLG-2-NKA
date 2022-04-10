@@ -3,7 +3,7 @@
 echo "--------------------------------------------------------------"
 echo "DOING TESTS FOR THE -2 PARAMETER"
 
-make -s -C ../../
+make -s -C ../
 
 directory="./printing_nka/"
 
@@ -41,7 +41,7 @@ for key in "${!tests_dict_nka[@]}"; do
     test_name_without_extension=${test_name%.*} 
     echo "Doing test: $test_name_without_extension..."
     #diff -u --strip-trailing-cr -w -b ${tests_dict[$key]} <(./flp21-fun -2 $key)
-    DIFF=$(diff -u --strip-trailing-cr -w -b ${tests_dict_nka[$key]} <(../flp21-fun -2 $key))
+    DIFF=$(diff -u --strip-trailing-cr -w -b ${tests_dict_nka[$key]} <(../flp21-fun -2 < $key))
 
     if [ "$DIFF" ] && [ $? == 0 ] 
     then

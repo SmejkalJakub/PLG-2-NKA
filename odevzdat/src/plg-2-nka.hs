@@ -45,15 +45,12 @@ processArguments args = do
 
 -- Functions that just prints the same grammar that was given as the input 
 returnPlg :: PlgGrammar -> IO()
-returnPlg plg = do
-  print plg
+returnPlg plg = print plg
 
 -- Function that prints out the updated grammar that is ready to be transfered to NKA
 returnUpdatedPlg :: PlgGrammar -> IO()
-returnUpdatedPlg plg = do
-  print $ getUpdatedPlg plg
+returnUpdatedPlg plg = print $ getUpdatedPlg plg
 
 -- Function that prints out equivalent NKA for the grammar that was given as the input
 returnNka :: PlgGrammar -> IO()
-returnNka plg = do
-  print $ getFinalNka $ getUpdatedPlg plg
+returnNka plg = print $ getFinalNka $ getUpdatedPlg plg
